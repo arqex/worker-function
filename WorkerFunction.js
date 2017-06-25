@@ -1,4 +1,4 @@
-var WORKER_ENABLED = !!(typeof window !== 'undefined' && === window.URL && window.Blob && window.Worker);
+var WORKER_ENABLED = !!(typeof window !== 'undefined' && window.URL && window.Blob && window.Worker);
 
 var wrapper = function(){
   // user function already defined as uf

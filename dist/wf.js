@@ -7,7 +7,7 @@
     root.WorkerFunction = factory();
   }
 }(this, function() {
-var WORKER_ENABLED = !!(global === global.window && global.URL && global.Blob && global.Worker);
+var WORKER_ENABLED = !!(typeof window !== 'undefined' && window.URL && window.Blob && window.Worker);
 
 var wrapper = function(){
   // user function already defined as uf
@@ -47,8 +47,8 @@ function WorkerFunction( fn ){
 
 function SrcWorker( src ){
   if (WORKER_ENABLED) {
-    return new global.Worker(global.URL.createObjectURL(
-      new global.Blob([ src ], { type: "text/javascript" })
+    return new window.Worker(window.URL.createObjectURL(
+      new window.Blob([ src ], { type: "text/javascript" })
     ));
   }
   else {
