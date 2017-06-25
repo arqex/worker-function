@@ -56,7 +56,8 @@ function SrcWorker( src ){
   }
 }
 
-module.exports = WorkerFunction;
+if(typeof modules !== 'undefined')
+  module.exports = WorkerFunction;
 
 return WorkerFunction;
 }));
