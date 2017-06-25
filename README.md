@@ -1,7 +1,7 @@
 # worker-function
-Create functions that are executed inside of a webworker and return promises.
+Create functions that are executed inside of web workers and return promises.
 
-Allows to create inline web workers without the need of creating single files for them. Have a look at the example:
+Allows to create inline web workers without the need of creating new files for them. Have a look at the example:
 
 ```js
 const WorkerFunction = require('worker-function');
@@ -30,10 +30,10 @@ The library is really lightweight, less than 1Kb minified.
 npm install worker-function
 ```
 
-Or you can use in the browser directly from the [dist files](https://github.com/arqex/worker-function/tree/master/dist).
+Or you can use it in the browser directly from the [dist files](https://github.com/arqex/worker-function/tree/master/dist).
 
 ## usage
-Worker functions are created by passing them to the `WorkerFunction` function:
+Functions to be executed in a web worker are created by passing them to the `WorkerFunction`:
 
 ```js
 var workerFn = WorkerFunction( function Fn(arg1,arg2,...,argN,done){
@@ -42,9 +42,9 @@ var workerFn = WorkerFunction( function Fn(arg1,arg2,...,argN,done){
 });
 ```
 
-You can pass as many arguments as needed to the function that is going to be executed within the web worker. You must know that the worker function will be called in its own thread, isolated from the main browser thread so you can't use any of the variables defined outside of the function.
+Now it's possible to call `workerFn` in the usual way, but it will be executed in its own thread, within a web worker. The execution will be isolated from the main browser thread so you can't use any of the variables defined outside of the function.
 
-A `done` function is always passed as the last argument to the function, and it's mandatory to call it to get the result from the main thread, using `then`:
+It's possible to pass any number of arguments needed to a worker function. In addition, `done` function is always passed as the last argument, and it's mandatory to call it to send the result from the main thread, resolving the promise:
 
 ```js
 workerFn(arg1, arg2, ..., argN)
