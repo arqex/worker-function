@@ -1,0 +1,32 @@
+{
+  "name": "worker-function",
+  "version": "1.0.0",
+  "description": "Create functions executed within a webworker and return promises",
+  "main": "WorkerFunction.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arqex/worker-function.git"
+  },
+  "keywords": [
+    "webworker",
+    "promise",
+    "inline",
+    "function"
+  ],
+  "author": "Javier Marquez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arqex/worker-function/issues"
+  },
+  "homepage": "https://github.com/arqex/worker-function#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
+    "gulp-umd": "^0.2.1"
+  }
+}
