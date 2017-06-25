@@ -1,6 +1,6 @@
 {
   "name": "worker-function",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Create functions executed within a webworker and return promises",
   "main": "WorkerFunction.js",
   "scripts": {
@@ -25,6 +25,7 @@
   "homepage": "https://github.com/arqex/worker-function#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-header": "^1.8.8",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^3.0.0",
     "gulp-umd": "^0.2.1"

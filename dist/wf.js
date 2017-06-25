@@ -1,3 +1,4 @@
+/* worker-function v1.1.1 by Javier Marquez - https://github.com/arqex/worker-function */
 ;(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define([], factory);
