@@ -1,4 +1,4 @@
-/* worker-function v1.1.1 by Javier Marquez - https://github.com/arqex/worker-function */
+/* worker-function v1.1.2 by Javier Marquez - https://github.com/arqex/worker-function */
 ;(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define([], factory);
@@ -57,7 +57,7 @@ function SrcWorker( src ){
   }
 }
 
-if(typeof modules !== 'undefined')
+if(typeof module !== 'undefined')
   module.exports = WorkerFunction;
 
 return WorkerFunction;

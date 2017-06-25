@@ -1,3 +1,6 @@
+#v1.1.2
+* Fixes usage as a common js module
+
 #v1.1.1
 * Improves building process
 

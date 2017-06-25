@@ -47,5 +47,5 @@ function SrcWorker( src ){
   }
 }
 
-if(typeof modules !== 'undefined')
+if(typeof module !== 'undefined')
   module.exports = WorkerFunction;
