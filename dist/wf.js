@@ -26,6 +26,23 @@ var wrapper = function(){
 }
 
 function WorkerFunction( fn ){
+  if (!WORKER_ENABLED) {
+    // Older browsers will run the function in the main thread.
+    return function () {
+      var args = Array.prototype.slice.call(arguments, 0);
+
+      return new Promise(function (resolve, reject) {
+        try {
+          args.push(resolve);
+          fn.apply(self, args);
+        }
+        catch (e) {
+          reject(re);
+        }
+      });
+    }
+  }
+
   return function(){
     var args = Array.prototype.slice.call( arguments, 0 );
 
@@ -47,14 +64,9 @@ function WorkerFunction( fn ){
 }
 
 function SrcWorker( src ){
-  if (WORKER_ENABLED) {
-    return new window.Worker(window.URL.createObjectURL(
-      new window.Blob([ src ], { type: "text/javascript" })
-    ));
-  }
-  else {
-    throw Error('WorkerFunction: Your browser do not support web workers.');
-  }
+  return new window.Worker(window.URL.createObjectURL(
+    new window.Blob([ src ], { type: "text/javascript" })
+  ));
 }
 
 if(typeof module !== 'undefined')
