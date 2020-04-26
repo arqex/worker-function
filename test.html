@@ -12,23 +12,23 @@
 <body>
     <p> Running tests...</p>
 </body>
-
-<script src="/dist//wf.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.js"></script>
+<script src="./WorkerFunction.js"></script>
 <script>
     // Let's create a new worker
     var workerSum = WorkerFunction(function (arg1, arg2, done) {
         // Worker execution can be async,
         // don't forget to call `done`
-        setTimeout(() => done(arg1 + arg2), 500);
+        setTimeout( function(){ done(arg1 + arg2) }, 500);
     });
 
     // workerSum is used in a new thread
     // and return a promise with the result
-    workerSum(2, 3).then(result => {
-        if (result == 5) {
-            document.body.innerHTML = `<p style="background: green; color: #FFF; padding: 20px;"> ✔ Works fine on browser.</p>`;
+    workerSum(2, 3).then( function(result) {
+        if (result === 5) {
+            document.body.innerHTML = '<p style="background: green; color: #FFF; padding: 20px;"> ✔ Works fine on browser.</p>';
         } else {
-            document.body.innerHTML = `<p style="background: red; color: #FFF; padding: 20px;"> ✘ Works fine on browser.</p>`;
+            document.body.innerHTML = '<p style="background: red; color: #FFF; padding: 20px;"> ✘ Works fine on browser.</p>';
         }
     });
 </script>
