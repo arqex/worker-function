@@ -4,8 +4,7 @@
   "description": "Create functions executed within a webworker and return promises",
   "main": "WorkerFunction.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/gulp"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -23,11 +22,8 @@
     "url": "https://github.com/arqex/worker-function/issues"
   },
   "homepage": "https://github.com/arqex/worker-function#readme",
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-header": "^1.8.8",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^3.0.0",
-    "gulp-umd": "^0.2.1"
+  "devDependencies": {},
+  "dependencies": {
+    "benchmark": "^2.1.4"
   }
 }

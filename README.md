@@ -44,7 +44,7 @@ var workerFn = WorkerFunction( function Fn(arg1,arg2,...,argN,done){
 
 Now it's possible to call `workerFn` in the usual way, but it will be executed in its own thread, within a web worker. The execution will be isolated from the main browser thread so you can't use any of the variables defined outside of the function.
 
-It's possible to pass any number of arguments needed to a worker function. In addition, `done` function is always passed as the last argument, and it's mandatory to call it to send the result from the main thread, resolving the promise:
+It's possible to pass any number of arguments needed to a worker function. In addition, `done` function is always passed as the last argument, and **it's mandatory to call it to send the result from the main thread**, resolving the promise and terminating the worker:
 
 ```js
 workerFn(arg1, arg2, ..., argN)
