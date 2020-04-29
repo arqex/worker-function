@@ -1,4 +1,6 @@
-# worker-function
+worker-function
+---------------
+
 Create functions that are executed inside of web workers and return promises.
 
 Allows to create inline web workers without the need of creating new files for them. Have a look at the example:
@@ -80,7 +82,7 @@ The only requirement of `worker-function` to work is to have `Promise`s availabl
 ## Performance
 `worker-function` treat web workers as disposable resources, so there is some time spent when we start a worker up.
 
-Fortunatelly, that startup time is almost unperceivable in the modern browsers. In our benchmarks running a worker-function scores almost exactly the same than running the function in the body of the `Promise.resolve` method:
+Fortunatelly, that startup time is almost unperceivable in the modern browsers. In our benchmarks, running a worker-function scores almost exactly the same than running the function in the body of the `Promise.resolve` method:
 
 ```
 Chrome 81
