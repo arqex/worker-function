@@ -47,10 +47,10 @@
         return new Promise(function (resolve, reject) {
           try {
             args.push(resolve);
-            fn.apply(self, args);
+            fn.apply(null, args);
           }
           catch (e) {
-            reject(re);
+            reject(e);
           }
         });
       }
@@ -58,7 +58,7 @@
   }
   
   function areWorkersAvailable(){
-    var available = !!(typeof window !== 'undefined' && window.URL && window.Blob && window.Worker);
+    var available = !!(glob && glob.URL && glob.Blob && glob.Worker);
     if( available ){
       // One more test
       try {
@@ -73,15 +73,15 @@
   }
   
   function SrcWorker( src ){
-    return new window.Worker( window.URL.createObjectURL(
-      new window.Blob([ src ], { type: "text/javascript" })
+    return new glob.Worker( glob.URL.createObjectURL(
+      new glob.Blob([ src ], { type: "text/javascript" })
     ));
   }
   
   if( typeof module !== 'undefined' ){
     module.exports = WorkerFunction;
   }
-  else if (glob ){
+  else if ( glob ){
     glob.WorkerFunction = WorkerFunction;
   }
 })(this);

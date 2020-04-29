@@ -10,11 +10,15 @@
 </head>
 
 <body>
-    <p> Running tests...</p>
+    <div id="exampleRunResult">Running tests...</div>
+    <button id="run">Run benchmark</button>
+    <div id="benchmarkResults"></div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.js"></script>
 <script src="./WorkerFunction.js"></script>
 <script>
+    var resultOut = document.getElementById('exampleRunResult');
+
     // Let's create a new worker
     var workerSum = WorkerFunction(function (arg1, arg2, done) {
         // Worker execution can be async,
@@ -24,13 +28,81 @@
 
     // workerSum is used in a new thread
     // and return a promise with the result
+    var result = 
     workerSum(2, 3).then( function(result) {
         if (result === 5) {
-            document.body.innerHTML = '<p style="background: green; color: #FFF; padding: 20px;"> ✔ Works fine on browser.</p>';
+            resultOut.innerHTML = '<p style="background: green; color: #FFF; padding: 20px;"> ✔ Works fine on browser.</p>';
         } else {
-            document.body.innerHTML = '<p style="background: red; color: #FFF; padding: 20px;"> ✘ Works fine on browser.</p>';
+            resultOut.innerHTML = '<p style="background: red; color: #FFF; padding: 20px;"> ✘ Works fine on browser.</p>';
         }
     });
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.5/platform.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/benchmark/2.1.4/benchmark.js"></script>
+<script>
+    // Run benchmark code
+    document.getElementById('run').addEventListener('click', runBenchmark);
+    var running = false;
+    var resultsOut = document.getElementById('benchmarkResults');
+
+    function printOut( result ){
+        let p = document.createElement('p');
+        p.innerHTML = String( result );
+        resultsOut.appendChild(p);
+    }
+
+    function runBenchmark(){
+        if( running ) return;
+
+        resultsOut.innerHTML = 'Running...';
+        function iterate() {
+            var sum;
+            for (var i = 0; i < 100000; i++) {
+                sum++;
+            }
+            return sum;
+        }
+
+        var wf = WorkerFunction(function (done) {
+            var sum;
+            for (var i = 0; i < 100000; i++) {
+                sum++;
+            }
+            done(sum);
+        });
+
+        var pf = function () {
+            return Promise.resolve(iterate());
+        }
+
+        var suite = new Benchmark.Suite();
+        suite
+            .add('Worker function', {
+                defer: true,
+                fn: deferred => {
+                    wf().then(() => deferred.resolve());
+                }
+            })
+            .add('Promise function', {
+                defer: true,
+                fn: deferred => {
+                    wf().then(() => deferred.resolve());
+                }
+            })
+            .add('Direct call', () => {
+                iterate();
+            })
+            .on('cycle', function (event) {
+                printOut( String(event.target) );
+            })
+            .on('complete', function () {
+                running = false;
+                printOut('Finished.');
+            })
+            .run({ defer: true })
+        ;
+    }
+</script>
 </html>

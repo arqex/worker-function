@@ -1,7 +1,7 @@
 {
   "name": "worker-function",
-  "version": "1.1.2",
-  "description": "Create functions executed within a webworker and return promises",
+  "version": "2.0.1",
+  "description": "Create functions executed within a web worker and return promises",
   "main": "WorkerFunction.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
