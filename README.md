@@ -1,5 +1,4 @@
-worker-function
----------------
+# worker-function
 
 Create functions that are executed inside of web workers and return promises.
 
