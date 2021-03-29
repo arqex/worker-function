@@ -84,5 +84,5 @@
   else if ( glob ){
     glob.WorkerFunction = WorkerFunction;
   }
-})(this);
+})(typeof globalThis !== 'undefined' ? globalThis : this);
 

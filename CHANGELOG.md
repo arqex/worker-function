@@ -1,3 +1,6 @@
+#v2.0.2
+* Fixes UMD module declaration.
+
 #v2.0.1
 * Fixes worker functions not working at all in Node.js
 
